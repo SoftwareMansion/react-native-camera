@@ -6,6 +6,7 @@
 package com.lwansbrough.RCTCamera;
 
 import android.content.ContentValues;
+import android.graphics.SurfaceTexture;
 import android.hardware.Camera;
 import android.media.*;
 import android.net.Uri;
@@ -531,7 +532,7 @@ public class RCTCameraModule extends ReactContextBaseJavaModule
             @Override
             public void onPictureTaken(final byte[] data, Camera camera) {
                 camera.stopPreview();
-                camera.startPreview();
+//                 camera.startPreview();
 
                 AsyncTask.execute(new Runnable() {
                     @Override
@@ -549,7 +550,7 @@ public class RCTCameraModule extends ReactContextBaseJavaModule
             public void onShutter() {
                 try {
                     camera.setPreviewCallback(null);
-                    camera.setPreviewTexture(null);
+                    camera.setPreviewTexture(new SurfaceTexture(0));
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
